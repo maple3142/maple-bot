@@ -4,5 +4,10 @@ export const botconfig = {
 	channelSecret: 'dc7a41405066571f2079b5a43961f0a1'
 }
 export const messages = {
-	commandNotFound: `Command not found, use !help to show command list.`
+	commandNotFound: `Command not found!
+Use !cmdlist to show command list.
+Use !help <command> to show usage.`
+}
+export const apikeys = {
+	osu: '1c4fef8cfa87cfda174c0e2de8613b9f8fd44f10'
 }

@@ -1,8 +1,10 @@
-const fs = require('fs')
-const path = require('path')
-const commands = fs.readdirSync(__dirname).filter(cmd => cmd !== 'index.js')
-module.exports = Object.assign(
-	...commands.map(cmd => ({
-		[cmd.replace(/(.*)\.js/, '$1')]: require(`./${cmd}`)
-	}))
-)
+import * as echo from './echo'
+import * as help from './help'
+import * as cmdlist from './cmdlist'
+import * as osu from './osu'
+export default {
+	echo,
+	help,
+	cmdlist,
+	osu
+}
