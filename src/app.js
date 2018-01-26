@@ -1,31 +1,46 @@
-import { middleware as LineMiddleWare, Client } from '@line/bot-sdk'
+import {
+	middleware as createLineMiddleware,
+	Client as LineClient
+} from '@line/bot-sdk'
 import express from 'express'
 import debug from 'debug'
+import commands from './commands'
+import { botconfig, messages } from './config'
 
-const log = debug('app')
+const log = debug('app:log')
 const error = debug('app:error')
 
-const config = {
-	channelAccessToken:
-		'RYOuJN6AZkjXo/Zd4bp8XQkrOcG3SqxYhhLIqNilmY4ZmkG2RsNUG1SFIzMXmZAW+Z/Sw20lNp14yvawyOxCIjGAPKkvppbVl7nhf7hTF7AuonELzEBLEQ3saDWzr7d0qug2Fq9sIbRChAbWkzjUGgdB04t89/1O/w1cDnyilFU=',
-	channelSecret: 'dc7a41405066571f2079b5a43961f0a1'
-}
-const client = new Client(config)
+const client = new LineClient(botconfig)
 
 const app = express()
-app.post('/webhook', LineMiddleWare(config), (req, res) => {
-	Promise.all(req.body.events.map(handleEvent))
-		.then(result => res.json(result))
-		.catch(err => error('Error %o', err))
+app.post('/webhook', createLineMiddleware(botconfig), (req, res) => {
+	Promise.all(req.body.events.map(handleEvent)).then(result =>
+		res.json(result)
+	)
 })
-function handleEvent(event) {
+async function handleEvent(event) {
 	log('Event %o', event)
 	if (event.type !== 'message' || event.message.type !== 'text') {
 		return Promise.resolve(null)
 	}
-	return client.replyMessage(event.replyToken, {
-		type: 'text',
-		text: event.message.text
-	})
+
+	let replyMsg
+	const msg = event.message.text
+	if (msg.startsWith('!')) {
+		const [cmd, ...args] = msg.slice(1).split(' ')
+		if (cmd in commands) {
+			replyMsg = await commands[cmd].handler(args)
+		} else {
+			replyMsg = messages.commandNotFound
+		}
+	}
+	return await client
+		.replyMessage(event.replyToken, {
+			type: 'text',
+			text: replyMsg
+		})
+		.catch(err => {
+			error('ReplyError %o', err.originalError.response.data)
+		})
 }
 app.listen(3000)
