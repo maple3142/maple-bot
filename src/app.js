@@ -43,4 +43,4 @@ async function handleEvent(event) {
 			error('ReplyError %o', err.originalError.response.data)
 		})
 }
-app.listen(3000)
+app.listen(process.env.PORT || 3000)
