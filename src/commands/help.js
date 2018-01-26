@@ -9,7 +9,7 @@ export function handler([command]) {
 	//show description of command
 	if (command !== 'help') {
 		try {
-			return require(`./${command}.js`).description
+			return require(`./${command}`).description
 		} catch (e) {
 			return messages.commandNotFound
 		}
