@@ -5,19 +5,16 @@ import commands from './commands'
 import { botconfig, messages } from './config'
 import client from './client'
 
-const log = debug('app:log')
-const error = debug('app:error')
-
 const app = express()
 app.post('/webhook', createLineMiddleware(botconfig), async (req, res) => {
 	const result = await Promise.all(req.body.events.map(handleEvent))
 	res.json(result)
 })
 async function handleEvent(event) {
-	log('Event %o', event)
+	debug('app:log:event')('Event %o', event)
 	if (event.type !== 'message' || event.message.type !== 'text') {
 		return Promise.resolve(null).catch(err => {
-			error('Error %o', err.originalError.response.data)
+			debug('app:error')('Error %o', err.originalError.response.data)
 		})
 	}
 
@@ -26,12 +23,12 @@ async function handleEvent(event) {
 	if (msg.startsWith('!')) {
 		//is command
 		const [cmd, ...args] = msg.slice(1).split(' ')
-		log('OnCommand %s', cmd)
+		debug('app:log:cmd')('%s %o', cmd, args)
 		if (cmd in commands) {
 			//command exists
 			replyMsg = await commands[cmd].handler(args, event)
 		} else {
-			replyMsg = messages.commandNotFound
+			replyMsg = messages.app.commandNotFound
 		}
 	}
 	if (typeof replyMsg === 'string' && replyMsg.length > 0) {

@@ -23,7 +23,7 @@ export async function get_user(id, mode) {
 			m: modemap[mode]
 		}
 	})
-	debug('app:osu:api:get_user')('%s %s %o', id, mode, data)
+	debug('app:log:osu:api:get_user')('%s %s %o', id, mode, data)
 	return data
 }
 export async function get_user_recent(id, mode) {
@@ -33,7 +33,7 @@ export async function get_user_recent(id, mode) {
 			m: modemap[mode]
 		}
 	})
-	debug('app:osu:api:get_user_recent')('%s %s %o', id, mode, data)
+	debug('app:log:osu:api:get_user_recent')('%s %s %o', id, mode, data)
 	return data
 }
 export async function get_user_best(id, mode) {
@@ -43,7 +43,7 @@ export async function get_user_best(id, mode) {
 			m: modemap[mode]
 		}
 	})
-	debug('app:osu:api:get_user_best')('%s %s %o', id, mode, data)
+	debug('app:log:osu:api:get_user_best')('%s %s %o', id, mode, data)
 	return data
 }
 export async function get_beatmaps(id) {
@@ -52,6 +52,6 @@ export async function get_beatmaps(id) {
 			b: id
 		}
 	})
-	debug('app:osu:api:get_beatmaps')('%s %o', id, data)
+	debug('app:log:osu:api:get_beatmaps')('%s %o', id, data)
 	return data
 }

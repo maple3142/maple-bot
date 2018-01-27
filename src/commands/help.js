@@ -11,7 +11,7 @@ export function handler([command]) {
 		try {
 			return require(`./${command}`).description
 		} catch (e) {
-			return messages.commandNotFound
+			return messages.help.commandNotFound
 		}
 	} else {
 		return description

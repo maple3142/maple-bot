@@ -2,17 +2,18 @@ import client from '../../client'
 import * as osuapi from './api'
 import debug from 'debug'
 import { flag } from 'country-code-emoji'
+import { messages } from '../../config'
 
-const log = debug('app:cmd:osu:stats')
+const log = debug('app:log:cmd:osu:stats')
 
 export default async function stats([id, mode = 'std']) {
-	if (!id) return 'No id provided'
-	if (!(mode in osuapi.modemap)) return 'Mode invaild'
+	if (!id) return messages.osu.idInvaild
+	if (!(mode in osuapi.modemap)) return messages.osu.modeInvaild
 
 	const [player] = await osuapi.get_user(id, mode)
 	log('%s %s %o', id, mode, player)
 	if (!player) {
-		return 'Player not found'
+		return messages.osu.noPlayer
 	} else {
 		return [
 			{
