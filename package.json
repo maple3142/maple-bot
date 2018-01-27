@@ -8,8 +8,10 @@
 		"axios": "^0.17.1",
 		"babel-cli": "^6.26.0",
 		"babel-core": "^6.26.0",
+		"babel-plugin-transform-object-rest-spread": "^6.26.0",
 		"babel-polyfill": "^6.26.0",
 		"babel-preset-env": "^1.6.1",
+		"babel-preset-stage-3": "^6.24.1",
 		"country-code-emoji": "^0.0.1",
 		"debug": "^3.1.0",
 		"express": "^4.16.2"
