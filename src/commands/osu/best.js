@@ -5,8 +5,8 @@ import debug from 'debug'
 const log = debug('app:cmd:osu:best')
 
 export default async function stats([id, mode = 'std']) {
-	if (!id) return 'no id provided'
-	if (!(mode in osuapi.modemap)) return 'mode invaild'
+	if (!id) return 'No id provided'
+	if (!(mode in osuapi.modemap)) return 'Mode invaild'
 
 	const data = await osuapi.get_user_best(id, mode)
 
