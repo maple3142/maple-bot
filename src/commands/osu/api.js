@@ -36,6 +36,16 @@ export async function get_user_recent(id, mode) {
 	debug('app:osu:api:get_user_recent')('%s %s %o', id, mode, data)
 	return data
 }
+export async function get_user_best(id, mode) {
+	const { data } = await osu.get('get_user_best', {
+		params: {
+			u: id,
+			m: modemap[mode]
+		}
+	})
+	debug('app:osu:api:get_user_best')('%s %s %o', id, mode, data)
+	return data
+}
 export async function get_beatmaps(id) {
 	const { data } = await osu.get('get_beatmaps', {
 		params: {
