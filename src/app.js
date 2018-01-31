@@ -11,10 +11,10 @@ app.post('/webhook', createLineMiddleware(botconfig), async (req, res) => {
 	res.json(result)
 })
 async function handleEvent(event) {
-	debug('app:log:event')('Event %o', event)
+	debug('app:log:event')('%o', event)
 	if (event.type !== 'message' || event.message.type !== 'text') {
 		return Promise.resolve(null).catch(err => {
-			debug('app:error')('Error %o', err.originalError.response.data)
+			debug('app:error')('%o', err.originalError.response.data)
 		})
 	}
 
@@ -26,7 +26,13 @@ async function handleEvent(event) {
 		debug('app:log:cmd')('%s %o', cmd, args)
 		if (cmd in commands) {
 			//command exists
-			replyMsg = await commands[cmd].handler(args, event)
+			const parsedArgs = args.map(arg => {
+				//try parseInt
+				const tmp = parseInt(arg)
+				if (isNaN(tmp)) return arg
+				else return tmp
+			})
+			replyMsg = await commands[cmd].handler(parsedArgs, event)
 		} else {
 			replyMsg = messages.app.commandNotFound
 		}
@@ -44,4 +50,6 @@ async function handleEvent(event) {
 		return await replyMsg
 	}
 }
-app.listen(process.env.PORT || 3000)
+
+const port = process.env.PORT || 3000
+app.listen(port, _ => debug('app:log')(`Running on http://localhost:${port}`))

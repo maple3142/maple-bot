@@ -11,10 +11,10 @@ const subhandlers = {
 export const description = `!osu stats <id> [std|taiko|mania|ctb,default=std]
 -- get player stats
 
-!osu recent <id> [std|taiko|mania|ctb,default=std]
+!osu recent <id> [std|taiko|mania|ctb,default=std] [1<=limit<=50,default=10]
 -- get player recent plays
 
-!osu best <id> [std|taiko|mania|ctb,default=std]
+!osu best <id> [std|taiko|mania|ctb,default=std] [1<=limit<=50,default=10]
 -- get player best plays`
 
 export function handler([cmd, ...args]) {

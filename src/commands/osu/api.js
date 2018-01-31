@@ -26,24 +26,32 @@ export async function get_user(id, mode) {
 	debug('app:log:osu:api:get_user')('%s %s %o', id, mode, data)
 	return data
 }
-export async function get_user_recent(id, mode) {
+export async function get_user_recent(id, mode, limit) {
 	const { data } = await osu.get('get_user_recent', {
 		params: {
 			u: id,
-			m: modemap[mode]
+			m: modemap[mode],
+			limit
 		}
 	})
-	debug('app:log:osu:api:get_user_recent')('%s %s %o', id, mode, data)
+	debug('app:log:osu:api:get_user_recent')(
+		'%s %s %d %o',
+		id,
+		mode,
+		limit,
+		data
+	)
 	return data
 }
-export async function get_user_best(id, mode) {
+export async function get_user_best(id, mode, limit) {
 	const { data } = await osu.get('get_user_best', {
 		params: {
 			u: id,
-			m: modemap[mode]
+			m: modemap[mode],
+			limit
 		}
 	})
-	debug('app:log:osu:api:get_user_best')('%s %s %o', id, mode, data)
+	debug('app:log:osu:api:get_user_best')('%s %s %d %o', id, mode, limit, data)
 	return data
 }
 export async function get_beatmaps(id) {

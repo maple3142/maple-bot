@@ -14,7 +14,8 @@ Use !help <command> to show usage.`
 		modeInvaild: 'Mode invaild',
 		noPlayer: 'Player not found',
 		noPlayerOrNoRecent: 'Player not found or No recent found',
-		noPlayerOrNoBest: 'Player not found or No best found'
+		noPlayerOrNoBest: 'Player not found or No best found',
+		limitInvaild: 'limit must in range %d~%d'
 	}
 }
 export const apikeys = {
