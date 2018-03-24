@@ -14,7 +14,7 @@ export function handler(args, { isAdmin }) {
 				.then(x => Object.keys(x).map(k => `${k}=${x[k]}`))
 				.then(s => s.join('\n'))
 		else return db.get(key).then(x => String(x))
-	} else if (type === 'set' && key && value) return db.set(key, value)
+	} else if (type === 'set' && key && key !== '*' && value) return db.set(key, value)
 	else if (type === 'del' && key) return db.del(key)
 	else return description
 }
