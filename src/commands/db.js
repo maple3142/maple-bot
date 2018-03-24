@@ -1,8 +1,9 @@
 import { db, messages } from '../config'
 
-export const description = `map set key value
-map get key
-map del key`
+export const description = `!db set key value
+!db get key
+!db del key
+// key==='*' means all`
 
 export function handler(args, { isAdmin }) {
 	if (!isAdmin) return messages.app.permDenied
