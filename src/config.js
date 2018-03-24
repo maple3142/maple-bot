@@ -10,7 +10,8 @@ export const messages = {
 	app: {
 		commandNotFound: `Command not found!
 Use !cmdlist to show command list.
-Use !help <command> to show usage.`
+Use !help <command> to show usage.`,
+		permDenied: 'Permission denied.'
 	},
 	osu: {
 		idInvaild: 'Id invaild',
@@ -25,3 +26,4 @@ export const apikeys = {
 	osu: process.env.apikeysosu
 }
 export const db = new ADB(process.env.dbUrl)
+export const ADMINKEY = process.env.ADMINKEY

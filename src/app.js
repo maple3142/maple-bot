@@ -2,7 +2,7 @@ import { middleware as createLineMiddleware } from '@line/bot-sdk'
 import express from 'express'
 import debug from 'debug'
 import commands from './commands'
-import { botconfig, messages } from './config'
+import { botconfig, messages, ADMINKEY, db } from './config'
 import client from './client'
 
 const app = express()
@@ -12,7 +12,7 @@ app.post('/webhook', createLineMiddleware(botconfig), async (req, res) => {
 })
 async function handleEvent(event) {
 	debug('app:log:event')('%o', event)
-	if (event.type !== 'message' || event.message.type !== 'text') {
+	if (event.type !== 'message' || event.message.type !== 'text' || event.source.type !== 'user') {
 		return Promise.resolve(null).catch(err => {
 			debug('app:error')('%o', err.originalError.response.data)
 		})
@@ -32,7 +32,11 @@ async function handleEvent(event) {
 				if (isNaN(tmp)) return arg
 				else return tmp
 			})
-			replyMsg = await commands[cmd].handler(parsedArgs, event)
+
+			const extra = { event }
+			extra.uid = event.source.userId
+			extra.isAdmin = (await db.get(ADMINKEY)) === extra.uid
+			replyMsg = await commands[cmd].handler(parsedArgs, extra)
 		} else {
 			replyMsg = messages.app.commandNotFound
 		}
