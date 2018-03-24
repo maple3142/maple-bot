@@ -1,9 +1,10 @@
 import dotenv from 'dotenv'
 dotenv.config()
+import ADB from 'apps-script-db'
 
 export const botconfig = {
 	channelAccessToken: process.env.channelAccessToken,
-	channelSecret: process.env.channelAccessToken
+	channelSecret: process.env.channelSecret
 }
 export const messages = {
 	app: {
@@ -23,3 +24,4 @@ Use !help <command> to show usage.`
 export const apikeys = {
 	osu: process.env.apikeysosu
 }
+export const db = new ADB(process.env.dbUrl)
