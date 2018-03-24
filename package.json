@@ -5,7 +5,7 @@
 	"license": "MIT",
 	"dependencies": {
 		"@line/bot-sdk": "^5.2.0",
-		"apps-script-db": "^0.2.1",
+		"apps-script-db": "^0.3.0",
 		"axios": "^0.17.1",
 		"babel-cli": "^6.26.0",
 		"babel-core": "^6.26.0",
