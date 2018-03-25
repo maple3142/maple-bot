@@ -9,18 +9,21 @@ export const botconfig = {
 }
 export const messages = {
 	app: {
-		commandNotFound: `Command not found!
-Use !cmdlist to show command list.
-Use !help <command> to show usage.`,
-		permDenied: 'Permission denied.'
+		commandNotFound: `找不到指令!
+使用 !cmdlist 以取得指令列表
+使用 !help <command> 取得說明`,
+		permDenied: '沒有權限'
 	},
 	osu: {
-		idInvaild: 'Id invaild',
-		modeInvaild: 'Mode invaild',
-		noPlayer: 'Player not found',
-		noPlayerOrNoRecent: 'Player not found or No recent found',
-		noPlayerOrNoBest: 'Player not found or No best found',
-		limitInvaild: 'limit must in range %d~%d'
+		idInvaild: 'id 錯誤',
+		modeInvaild: '模式錯誤',
+		noPlayer: '找不到玩家',
+		noPlayerOrNoRecent: '找不到玩家或沒有最新紀錄',
+		noPlayerOrNoBest: '找不到玩家或沒有最佳紀錄',
+		limitInvaild: '範圍必須在: %d~%d'
+	},
+	eq: {
+		failed: '取得地震資料失敗'
 	}
 }
 export const apikeys = {

@@ -26,17 +26,7 @@ export default async function stats([id, mode = 'std', limit = 10]) {
 
 		const texts = recents
 			.filter(rc => rc.beatmap)
-			.map(
-				rc =>
-					`${rc.beatmap.artist}-${rc.beatmap.title}[${
-						rc.beatmap.version
-					}] ${rc.rank}`
-			)
-		return splitPer(texts, 10)
-			.map(arr => arr.join('\n\n'))
-			.map(t => ({
-				type: 'text',
-				text: t
-			}))
+			.map(rc => `${rc.beatmap.artist}-${rc.beatmap.title}[${rc.beatmap.version}] ${rc.rank}`)
+		return splitPer(texts, 10).map(arr => arr.join('\n\n'))
 	}
 }

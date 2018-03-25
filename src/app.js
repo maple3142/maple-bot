@@ -48,6 +48,8 @@ async function handleEvent(event) {
 			text: replyMsg
 		})
 	} else if (Array.isArray(replyMsg)) {
+		let isAllString = replyMsg.every(x => typeof x === 'string')
+		if (isAllString) replyMsg = replyMsg.map(s => ({ type: 'text', text: s }))
 		return client.replyMessage(event.replyToken, replyMsg)
 	} else if (replyMsg != null) {
 		//other type message
