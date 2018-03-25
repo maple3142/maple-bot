@@ -7,14 +7,16 @@ export const description = `!db set key value
 
 export function handler(args, { isAdmin }) {
 	if (!isAdmin) return messages.app.permDenied
-	const [type, key, value] = args
+	const [type, key, value] = args.map(x => x.toString())
 	if (type === 'get' && key) {
 		if (key === '*')
-			return JSON.parse(db.get('*'))
+			return db
+				.get('*')
+				.then(JSON.parse)
 				.then(x => Object.keys(x).map(k => `${k}=${x[k]}`))
 				.then(s => s.join('\n'))
 		else return db.get(key).then(x => String(x))
-	} else if (type === 'set' && key && key !== '*' && value) return db.set(String(key), String(value))
-	else if (type === 'del' && key) return db.del(key)
+	} else if (type === 'set' && key && key !== '*' && value) db.set(String(key), String(value))
+	else if (type === 'del' && key) db.del(key)
 	else return description
 }
