@@ -1,6 +1,7 @@
 import dotenv from 'dotenv'
 dotenv.config()
 import ADB from 'apps-script-db'
+import fetch from 'node-fetch'
 
 export const botconfig = {
 	channelAccessToken: process.env.channelAccessToken,
@@ -25,5 +26,5 @@ Use !help <command> to show usage.`,
 export const apikeys = {
 	osu: process.env.apikeysosu
 }
-export const db = new ADB(process.env.dbUrl)
+export const db = new ADB(process.env.dbUrl, fetch)
 export const ADMINKEY = process.env.ADMINKEY
