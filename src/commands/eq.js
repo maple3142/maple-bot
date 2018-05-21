@@ -32,7 +32,7 @@ async function getEarthQuakes() {
 		})
 }
 
-export const description = `!eq
+export const description = `/eq
 Get Taiwan earthquakes report.`
 
 export function handler(args) {

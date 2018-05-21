@@ -12,15 +12,15 @@ app.post('/webhook', createLineMiddleware(botconfig), async (req, res) => {
 })
 async function handleEvent(event) {
 	debug('app:log:event')('%o', event)
-	if (event.type !== 'message' || event.message.type !== 'text' || event.source.type !== 'user') {
-		return Promise.resolve(null).catch(err => {
+	if (event.type !== 'message' || event.message.type !== 'text') {
+		return Promise.resolve().catch(err => {
 			debug('app:error')('%o', err.originalError.response.data)
 		})
 	}
 
 	let replyMsg = null
 	const msg = event.message.text
-	if (msg.startsWith('!')) {
+	if (msg.startsWith('/')) {
 		//is command
 		const [cmd, ...args] = msg.slice(1).split(' ')
 		debug('app:log:cmd')('%s %o', cmd, args)
@@ -41,6 +41,7 @@ async function handleEvent(event) {
 			replyMsg = messages.app.commandNotFound
 		}
 	}
+
 	if (typeof replyMsg === 'string' && replyMsg.length > 0) {
 		//vaild text message
 		return await client.replyMessage(event.replyToken, {

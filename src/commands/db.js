@@ -1,8 +1,8 @@
 import { db, messages } from '../config'
 
-export const description = `!db set key value
-!db get key
-!db del key
+export const description = `/db set key value
+/db get key
+/db del key
 // key==='*' means all`
 
 export function handler(args, { isAdmin }) {
