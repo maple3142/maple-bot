@@ -1,5 +1,7 @@
 # maple-bot
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/maple3142/maple-bot.svg)](https://greenkeeper.io/)
+
 [Add friend](https://line.me/R/ti/p/_kHt1t-JN4)
 
 ## deployment
