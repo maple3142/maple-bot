@@ -4,9 +4,9 @@
 	"main": "index.js",
 	"license": "MIT",
 	"dependencies": {
-		"@line/bot-sdk": "^5.2.0",
+		"@line/bot-sdk": "^6.0.2",
 		"apps-script-db": "^0.4.4",
-		"axios": "^0.17.1",
+		"axios": "^0.18.0",
 		"babel-cli": "^6.26.0",
 		"babel-core": "^6.26.0",
 		"babel-plugin-transform-object-rest-spread": "^6.26.0",
