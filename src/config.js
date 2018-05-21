@@ -24,6 +24,11 @@ export const messages = {
 	},
 	eq: {
 		failed: '取得地震資料失敗'
+	},
+	bhqz: {
+		notFound: '找不到 sn 為 %d 的題目',
+		noData: '沒有資料',
+		localDataReady: '本地資料取得完成'
 	}
 }
 export const apikeys = {
@@ -31,3 +36,4 @@ export const apikeys = {
 }
 export const db = new ADB(process.env.dbUrl, fetch)
 export const ADMINKEY = process.env.ADMINKEY
+export const bhqzurl = 'https://script.google.com/macros/s/AKfycbyDOc-c9K4PNYzm3S9qGy4nRnGcHDjDwzE_DV_xbNctKs42EO8/exec'

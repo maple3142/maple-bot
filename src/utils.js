@@ -5,3 +5,6 @@ export function splitPer(arr, len = 1) {
 	}
 	return result
 }
+export function random(min, max) {
+	return parseInt(Math.random() * (max - min) + min)
+}

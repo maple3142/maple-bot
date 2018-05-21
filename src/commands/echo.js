@@ -1,5 +1,4 @@
-export const description = `[TESTING ONLY]
-/echo ...args => args.join(' ') //print args`
+export const description = `/echo ...args => args.join(' ')`
 
 export function handler(args) {
 	if (args.length === 0) {

@@ -1,6 +1,6 @@
 import cmds from './index'
 
-export const description = `get commands list`
+export const description = `指令列表`
 
 export function handler(args) {
 	return Object.keys(cmds)

@@ -33,7 +33,7 @@ async function getEarthQuakes() {
 }
 
 export const description = `/eq
-Get Taiwan earthquakes report.`
+取得台灣最近地震紀錄。`
 
 export function handler(args) {
 	return getEarthQuakes()

@@ -3,7 +3,7 @@ import { db, messages } from '../config'
 export const description = `/db set key value
 /db get key
 /db del key
-// key==='*' means all`
+// key==='*' 代表全部的資料`
 
 export function handler(args, { isAdmin }) {
 	if (!isAdmin) return messages.app.permDenied

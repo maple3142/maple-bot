@@ -1,6 +1,6 @@
 import { messages } from '../config'
 
-export const description = `/help <command> //show description of command`
+export const description = `/help <command>`
 
 export function handler([command]) {
 	if (!command) {
